@@ -1,4 +1,12 @@
 const file = require('../utils/fileWork');
+const fs = require('fs');
+const path = require('path');
+
+const fullPath = path.join(
+  path.dirname(process.mainModule.filename), 
+  'data',
+  'routes.json'
+);
 
 class Route {
     constructor({ cityA, cityB, distance }) {
@@ -20,12 +28,8 @@ class Route {
     }
 
     static fecthAllRoutes() {
-        file.getRoutesFromFile(Route._getAllRoutes);
-        console.log('work');
-    }
-
-    static _getAllRoutes(routes) {
-        return routes;
+        const routes = file.getRoutesFromFile();
+        return JSON.parse(routes);
     }
 }
 
