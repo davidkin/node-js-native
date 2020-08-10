@@ -39,26 +39,6 @@ const routeController = (req, res) => {
         });
     }
 
-    // if (url === '/route' && method === "PUT") {
-    //     const data = [];
-
-    //     req.on('data', chunk => {
-    //         data.push(chunk);
-    //     });
-
-    //     return req.on('end', () => {
-    //         const parsedData = Buffer.concat(data).toString();
-    //         const body = parse(parsedData);
-    //         const route = new Route(body);
-    //         route.saveRoute(route);
-
-    //         res.statusCode = 302;
-    //         res.setHeader('Location', '/');
-
-    //         return res.end();
-    //     });
-    // };
-
     res.setHeader('Content-Type', 'text/html');
     res.setHeader("Access-Control-Allow-Origin", "*");
 
