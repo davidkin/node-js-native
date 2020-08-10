@@ -1,12 +1,4 @@
 const file = require('../utils/fileWork');
-const fs = require('fs');
-const path = require('path');
-
-const fullPath = path.join(
-  path.dirname(process.mainModule.filename), 
-  'data',
-  'routes.json'
-);
 
 class Route {
     constructor({ id, cityA, cityB, distance }) {
