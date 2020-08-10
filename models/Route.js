@@ -32,10 +32,6 @@ class Route {
         });
     }
 
-    static updateRoute() {
-        console.log('Api (updateRoute):', 1);
-    }
-
     static fecthAllRoutes() {
         const routes = file.getRoutesFromFileSync();
         return JSON.parse(routes);
