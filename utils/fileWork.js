@@ -20,7 +20,7 @@ const getRoutesFromFile = (callback) => {
 };
 
 const saveRoutesToFile = (data) => {
-  fs.writeFile(fullPath, JSON.stringify(data), err => console.log('File save (err)', err));
+  fs.writeFile(fullPath, JSON.stringify(data), err => err && console.log('File save (err)', err));
 };
 
 module.exports = {
@@ -28,4 +28,3 @@ module.exports = {
   saveRoutesToFile,
   getRoutesFromFileSync
 };
-  
