@@ -7,11 +7,17 @@ const fullPath = path.join(
   'routes.json'
 );
 
-const getRoutesFromFile = () => {
+const getRoutesFromFileSync = () => {
   return fs.readFileSync(fullPath, (err, fileContent) => {
     return err ? [] : fileContent;
   }).toString();
 }
+
+const getRoutesFromFile = (callback) => {
+  return fs.readFile(fullPath, (err, fileContent) => {
+    return err ? callback([]) : callback(JSON.parse(fileContent));
+  });
+};
 
 const saveRoutesToFile = (data) => {
   fs.writeFile(fullPath, JSON.stringify(data), err => console.log('File save (err)', err));
@@ -19,6 +25,7 @@ const saveRoutesToFile = (data) => {
 
 module.exports = {
   getRoutesFromFile,
-  saveRoutesToFile
+  saveRoutesToFile,
+  getRoutesFromFileSync
 };
   

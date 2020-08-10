@@ -9,7 +9,8 @@ const fullPath = path.join(
 );
 
 class Route {
-    constructor({ cityA, cityB, distance }) {
+    constructor({ id, cityA, cityB, distance }) {
+        this.id = id;
         this.cityA = cityA;
         this.cityB = cityB;
         this.distance = distance;
@@ -17,9 +18,17 @@ class Route {
 
     saveRoute() {
         file.getRoutesFromFile(routes => {
-            this.id = Math.random().toString();
-            routes.push(this);
-            file.saveRoutesToFile(routes);
+            if (this.id) {
+                const existingRouteIndex = routes.findIndex(route => this.id === route.id);                
+                const updatedRoutes = [...routes];
+    
+                updatedRoutes[existingRouteIndex] = this;
+                file.saveRoutesToFile(updatedRoutes);
+            } else {
+                this.id = Math.random().toString();
+                routes.push(this);
+                file.saveRoutesToFile(routes);
+            }
         });
     }
 
@@ -28,7 +37,7 @@ class Route {
     }
 
     static fecthAllRoutes() {
-        const routes = file.getRoutesFromFile();
+        const routes = file.getRoutesFromFileSync();
         return JSON.parse(routes);
     }
 }

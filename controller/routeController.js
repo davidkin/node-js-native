@@ -19,7 +19,7 @@ const routeController = (req, res) => {
         return res.end();
     }
 
-    if (url === '/route' && method === 'POST') {
+    if (url === '/route' && method === 'POST' || method === "PUT") {
         const data = [];
 
         req.on('data', chunk => {
@@ -30,7 +30,7 @@ const routeController = (req, res) => {
             const parsedData = Buffer.concat(data).toString();
             const body = parse(parsedData);
             const route = new Route(body);
-            route.saveRoute(route);
+            route.saveRoute();
 
             res.statusCode = 302;
             res.setHeader('Location', '/');
@@ -39,17 +39,25 @@ const routeController = (req, res) => {
         });
     }
 
-    if (url === '/update-route') {
-        views.editPage(res);
+    // if (url === '/route' && method === "PUT") {
+    //     const data = [];
 
-        return res.end();
-    };
+    //     req.on('data', chunk => {
+    //         data.push(chunk);
+    //     });
 
-    if (url === '/route' && method === "PUT") {
-        console.log('Work');
+    //     return req.on('end', () => {
+    //         const parsedData = Buffer.concat(data).toString();
+    //         const body = parse(parsedData);
+    //         const route = new Route(body);
+    //         route.saveRoute(route);
 
-        return res.end();
-    };
+    //         res.statusCode = 302;
+    //         res.setHeader('Location', '/');
+
+    //         return res.end();
+    //     });
+    // };
 
     res.setHeader('Content-Type', 'text/html');
     res.setHeader("Access-Control-Allow-Origin", "*");
