@@ -6,6 +6,12 @@ const routeController = (req, res) => {
     const url = req.url;
     const method = req.method;
 
+    console.log(url);
+
+    if (url === '/favicon.ico') {
+        return res.end();
+    }
+
     if (url === '/') {
         views.homePage(res);
 
@@ -40,6 +46,7 @@ const routeController = (req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Type', 'image/x-icon');
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     res.end();
