@@ -7,14 +7,14 @@ const routeController = (req, res) => {
     const method = req.method;
 
     if (url === '/') {
-        views.routesHomePage(res);
+        views.homePage(res);
 
         return res.end();
     }
 
     if (url === '/routes?' && method === 'GET') {
         const routes = Route.fecthAllRoutes();
-        views.routesListPage(routes, res);
+        views.listPage(routes, res);
 
         return res.end();
     }
@@ -38,6 +38,18 @@ const routeController = (req, res) => {
             return res.end();
         });
     }
+
+    if (url === '/update-route') {
+        views.editPage(res);
+
+        return res.end();
+    };
+
+    if (url === '/route' && method === "PUT") {
+        console.log('Work');
+
+        return res.end();
+    };
 
     res.setHeader('Content-Type', 'text/html');
     res.setHeader("Access-Control-Allow-Origin", "*");

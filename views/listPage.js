@@ -1,8 +1,6 @@
-const routeListPage = (routes, res) => {    
-    if (!routes) {
-        return '<p>Not routes yet</p>'
-    }
+const saveForm = require('./saveForm');
 
+const routeListPage = (routes, res) => {    
     const routesList = routes.map((value, i) => {
         return `
             <h3>Route ${i + 1}</h3>
@@ -10,9 +8,12 @@ const routeListPage = (routes, res) => {
                 <li>City A: ${value.cityA}</li>
                 <li>City B: ${value.cityB}</li>
                 <li>Distance: ${value.distance}</li>
+
             </ul>
+            <span>Edit:</span>
+            ${saveForm('route', 'PUT', value)}
             <hr />`;
-    }).toString();
+        }).toString().replace(/,/g, ' ');
 
     res.write('<html>');
     res.write('<head><title>All Routes</title></head>');
@@ -20,7 +21,7 @@ const routeListPage = (routes, res) => {
     res.write('<a href="/"><- Back</a>');
     res.write('<h2>All Routes:</h2>');
     res.write(routesList);
-    res.write('</a>');
+    res.write('</body>');
     res.write('</html>');
 
     res.end();

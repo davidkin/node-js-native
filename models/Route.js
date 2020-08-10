@@ -12,7 +12,7 @@ class Route {
     constructor({ cityA, cityB, distance }) {
         this.cityA = cityA;
         this.cityB = cityB;
-        this.disctance = distance;
+        this.distance = distance;
     }
 
     saveRoute() {

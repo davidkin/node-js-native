@@ -1,7 +1,7 @@
-const routesListPage = require('./routesListPage');
-const routesHomePage = require('./routesHomePage');
+const listPage = require('./listPage');
+const homePage = require('./homePage');
 
 module.exports = {
-    routesListPage,
-    routesHomePage
+    listPage,
+    homePage
 };
